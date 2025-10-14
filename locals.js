@@ -74,7 +74,7 @@ I18N.conf = {
             '.cm-line',
         ],
         '*': [
-            'div.QueryBuilder-StyledInputContainer',  // 顶部搜索栏 关键词被翻译
+            '#qb-input-query',  // 顶部搜索栏 关键词被翻译
         ],
     },
 
@@ -192,7 +192,7 @@ I18N.conf = {
         '*': [
             '.comment-body', '.js-preview-body',
             '.markdown-title',
-            'span.ActionListItem-label.text-normal', // 顶部搜索栏 关键词被翻译
+            '#qb-input-query',  // 顶部搜索栏 关键词被翻译
             'CODE', 'SCRIPT', 'STYLE', 'LINK', 'IMG', 'MARKED-TEXT', 'PRE', 'KBD', 'SVG', 'MARK' // 特定元素标签
         ],
     },
@@ -828,6 +828,7 @@ I18N["zh-CN"]["public"] = { // 公共区域翻译
             "Privacy": "隐私",
             "Security": "安全",
             "Status": "状态",
+            "Community": "社区",
             "Docs": "文档",
             "Contact": "联系我们",
             "Manage cookies": "管理 Cookies",
@@ -862,6 +863,7 @@ I18N["zh-CN"]["public"] = { // 公共区域翻译
             "Nothing to preview": "没有什么可预览",
             "This repository has been archived.": "此仓库已存档。", // 已存档仓库 某个提交的评论框
             "Add review comment": "添加审查意见", // 具体拉取请求 文件审查意见
+            "Failed to save comment: Body can't be blank": "保存评论失败：正文内容不能为空", // 具体拉取请求 文件审查意见
             "Start a review": "开始审查", // 具体拉取请求 文件审查意见
             // 取消按钮 提醒信息
             "Are you sure you want to discard your unsaved changes?": "您确定要放弃未保存的更改吗？",
@@ -1148,8 +1150,8 @@ I18N["zh-CN"]["public"] = { // 公共区域翻译
         // 公共词 高频词
             "Follow": "关注",
             "Unfollow": "取消关注",
-            "Star": "标星",
-            "Stars": "标星",
+            "Star": "星标",
+            "Stars": "星标",
             "Unstar": "已加星标",
             "Starred": "已加星标",
             "Fork": "复刻",
@@ -3073,6 +3075,7 @@ I18N["zh-CN"]["settings-menu"] = { // 设置 - 公共部分
         "Billing and licensing": "账单和许可",
             "New": "新",
             "Usage": "使用情况",
+            "Premium request analytics": "高级请求分析",
             "Budgets and alerts": "预算和警报",
             "Licensing": "许可",
             "Payment information": "支付信息",
@@ -3747,6 +3750,7 @@ I18N["zh-CN"]["settings/billing"] = { // 设置 - 账单和计划
                         "Packages storage": "软件包存储",
                         "Included usage limits reset in": "将重置于",
                         "days": "天内",
+                        "day": "天内",
                 "Chart options": "图表选项",
                     "View as table": "以表格形式查看",
                         "DateTime": "日期时间",
@@ -3881,6 +3885,23 @@ I18N["zh-CN"]["settings/billing"] = { // 设置 - 账单和计划
                 "Units": "单位",
                 "Price/unit": "单价",
                 "Billed amount": "计费",
+
+        // 高级请求分析 https://github.com/settings/billing/premium_requests_usage
+            "Usage analytics for premium requests in your personal account.": "在您的个人账户中针对高级请求的使用分析。",
+
+            "Billed premium requests": "计费高级请求",
+                "Increase your budget": "提高您的预算",
+                    "to use premium requests beyond your included request limit.": "以便在超出包含请求额度后继续使用。",
+
+            "Included premium requests consumed": "包含高级请求",
+                "Premium requests included in your": "高级请求包含在您的",
+                    "Copilot plan": "Copilot 计划中",
+                    // 后续走正则
+
+            // 用量分析
+                "Model": "模型",
+                    "Included requests": "包含请求",
+                    "Billed requests": "计费请求",
 
         // 预算和警报 https://github.com/settings/billing/budgets
            "Account budgets": "账户预算",
@@ -4328,9 +4349,17 @@ I18N["zh-CN"]["settings/billing"] = { // 设置 - 账单和计划
 
     },
     "regexp": [ // 正则翻译
+        // 高级请求分析（词条打架调整位置） https://github.com/settings/billing/premium_requests_usage
+        [/. Monthly limit resets in (\d+) days? on (.+)./, "。将在 $1 天后（$2）重置。"],
+        [/Usage for (.+) - (.+). Price per premium request is \$0.04./, (match, p1, p2) => {
+            const dateRegExp = I18N["zh-CN"]["public"]["time-regexp"];
+            const translatedP1 = dateRegExp.reduce((acc, [pattern, replacement]) => acc.replace(pattern, replacement), p1);
+            const translatedP2 = dateRegExp.reduce((acc, [pattern, replacement]) => acc.replace(pattern, replacement), p2);
+            return `${translatedP1}-${translatedP2}用量。高级请求价格为 $0.04 / 个。`;
+        }],
 
         // billing 概况页面
-        [/(?:Gross metered usage|Included usage discounts) for (.+) - (.+)./, (match, p1, p2) => { // 概况下方小字，过于啰嗦直接省略
+        [/(?:Gross metered usage|Included usage discounts) for (.+) - (.+).$/, (match, p1, p2) => { // 概况下方小字，过于啰嗦直接省略
             //const translatedP1 = I18N["zh-CN"]["public"]["time-regexp"][p1] || p1;
             //const translatedP2 = I18N["zh-CN"]["public"]["time-regexp"][p2] || p2;
             const dateRegExp = I18N["zh-CN"]["public"]["time-regexp"];
@@ -4449,9 +4478,9 @@ I18N["zh-CN"]["settings/billing"] = { // 设置 - 账单和计划
         //     return `${translatedDate}` + optKey[opt];
         // }],
 
-        // 计费用量 https://github.com/settings/billing/usage
-            [/^Group: (None|Product|SKU|Repository)$/, function(all, group) {
-                var groupKey = {'None': '无','Product': '产品','SKU': 'SKU','Repository': '仓库'};
+        // 计费用量 https://github.com/settings/billing/usage + 高级请求分析 https://github.com/settings/billing/premium_requests_usage
+            [/^Group(?: by)?: (None|Product|SKU|Repository|Models)$/, function(all, group) {
+                var groupKey = {'None': '无','Product': '产品','SKU': 'SKU','Repository': '仓库', 'Models': '模型'};
                 return '分组：' + groupKey[group];
             }],
             [/Usage for (.+)./, (match, p1) => {
@@ -9319,6 +9348,7 @@ I18N["zh-CN"]["repository/issues"] = { // 仓库 - 议题页面
                     "The issue was successfully deleted.": "该议题已成功删除。",
 
                 "Participants": "参与者",
+                    "No participants": "尚无参与者",
 
             "Load more…": "载入更多…",
             // 新版议题页面
@@ -10399,6 +10429,7 @@ I18N["zh-CN"]["repository/pull"] = { // 仓库 - 某个拉取请求页面
 
                 "All changes": "所有更改",
                 "All commits": "所有提交",
+                "Changes since your last review": "自您上次审核以来的更改",
                 "Specific commit…": "特定提交…",
                     "Pick one or more commits": "选择多个提交",
                     "Clear selection": "清除选择",
@@ -11360,6 +11391,9 @@ I18N["zh-CN"]["repository/blob"] = { // 仓库 - 浏览代码
                         "No matches found": "未找到匹配项",
                         "Go to folder": "转到文件夹",
                         "See all results": "查看所有结果",
+            
+            // Git LFS 托管的文件
+                "Stored with Git LFS": "Git LFS 托管",
 
             // Action的 action.yml 文件
                 "You can publish this Action to the GitHub Marketplace": "您可以将此 Action 发布到 GitHub 市场",
@@ -11460,6 +11494,9 @@ I18N["zh-CN"]["repository/blob"] = { // 仓库 - 浏览代码
                 "View remainder of file in raw view": "以原码视图查看文件剩余部分",
 
             // 正文部分
+                // 只读模式
+                    "Code view is read-only. ": "代码视图是只读的。",
+                    "Switch to the editor.": "请切换至编辑器。",
                 // csv 文件
                     "Search this file": "搜索这个文件", // csv 文件
                     // 提醒
@@ -25693,6 +25730,8 @@ I18N["zh-CN"]["copilot"] = {
                 "More options": "更多",
                     "Download all files": "下载全部",
                     "Close all tabs": "关闭所有标签",
+
+                "Diff": "差异",
 
                 "Download code": "下载代码",
 
