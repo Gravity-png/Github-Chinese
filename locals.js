@@ -45,7 +45,7 @@ I18N.conf = {
      * 导入仓库 /new/import
      * ...
      */
-    rePagePath: /^\/($|home|dashboard|copilot|signup|account_verifications|login\/oauth|login|logout|sessions?|password_reset|orgs|explore|topics|notifications\/subscriptions|notifications|watching|stars|issues|pulls|search|trending|showcases|new\/(import|project)|new|import|settings\/(profile|admin|appearance|accessibility|notifications|billing|emails|security_analysis|security-log|security|auth|sessions|keys|ssh|gpg|organizations|enterprises|blocked_users|interaction_limits|code_review_limits|repositories|codespaces|models|codespaces\/allow_permissions|deleted_repositories|packages|copilot|pages|replies|installations|apps\/authorizations|reminders|sponsors-log|apps|(?:personal-access-|)tokens|developers|applications\/new|applications|connections\/applications|education\/benefits)|settings|installations\/new|marketplace|apps|account\/(organizations\/new|choose|upgrade|billing\/history)|projects|redeem|discussions|collections|sponsors|sponsoring|github-copilot\/(signup|free_signup|code-review-waitlist|pro)|codespaces|developer\/register|features|security|sitemap|education)|^\/users\/[^\/]+\/(projects|packages|succession\/invitation)/,
+    rePagePath: /^\/($|home|dashboard|copilot|signup|account_verifications|login\/oauth|login|logout|sessions?|password_reset|orgs|explore|topics|notifications\/subscriptions|notifications|watching|stars|issues|pulls|search|trending|showcases|new\/(import|project)|new|import|settings\/(profile|admin|appearance|accessibility|notifications|billing|emails|security_analysis|security-log|security|auth|sessions|keys|ssh|gpg|organizations|enterprises|blocked_users|interaction_limits|code_review_limits|repositories|codespaces|models|codespaces\/allow_permissions|deleted_repositories|packages|copilot|pages|replies|installations|apps\/authorizations|reminders|sponsors-log|apps|(?:personal-access-|)tokens|developers|applications\/new|applications|connections\/applications|education\/benefits)|settings|installations\/new|marketplace|apps|account\/(organizations\/new|choose|upgrade|billing\/history)|projects|redeem|discussions|collections|sponsors|sponsoring|github-copilot\/(signup|free_signup|code-review-waitlist|pro)|codespaces|developer\/register|features|security|sitemap|education|mcp)|^\/users\/[^\/]+\/(projects|packages|succession\/invitation)/,
 
     // 仓库路径
     rePagePathRepo: /^\/[^\/]+\/[^\/]+\/(issues|pulls|pull|tree|watchers|stargazers|new|edit|delete|upload|find|models|wiki|branches|discussions|activity|rules|releases|packages|tags|labels|milestones?|compare|commit|blob|blame|actions(\/metrics\/(usage|performance))?|runs|deployments|security|pulse|community|forks|fork|import|graphs\/(contributors|community|traffic|commit-activity|code-frequency)|network$|network\/(dependencies|dependents|updates|members)|settings\/(access|code_review_limits|interaction_limits|branches|branch_protection_rules|tag_protection|rules|actions|models\/access-policy|hooks|copilot\/(code_review|coding_agent)|environments|codespaces|pages|security_analysis|dependabot_rules|keys|secrets|variables|installations|notifications|key_links)|settings|transfer|projects\/new|pkgs|contribute|subscription|invitations|codespaces|attestations|custom-properties|reported_content)/,
@@ -269,7 +269,7 @@ I18N["zh-CN"]["title"] = { // 标题翻译
         "Forgot your password? · GitHub": "忘记您的密码了吗？· GitHub",
         "Forgot your password?": "忘记您的密码了吗？",
         "GitHub · Where software is built": "GitHub · 软件构建的地方",
-        "Create a New Repository": "创建新仓库",
+        "Create a New Repository": "新建仓库",
         "Import a Repository": "导入仓库",
         "New Project": "创建项目",
         "Your Repositories": "我的仓库",
@@ -359,6 +359,7 @@ I18N["zh-CN"]["title"] = { // 标题翻译
         "Discover gists · GitHub": "探索代码片段 · GitHub",
         "Explore GitHub Sponsors": "探索 GitHub 赞助者",
         "Actions Usage Metrics": "操作使用情况",
+        "Actions usage metrics": "操作使用情况",
         "Fine-grained Personal Access Tokens": "精细化的个人访问令牌",
         "Import repository": "导入仓库",
         "Explore GitHub": "探索 GitHub",
@@ -370,6 +371,7 @@ I18N["zh-CN"]["title"] = { // 标题翻译
         "Code security": "代码安全",
         "Deploy keys": "部署密钥",
         "Actions Performance Metrics": "操作数据看板",
+        "Actions performance metrics": "操作数据看板",
         "GitHub Sitemap · GitHub": "GitHub 网站地图",
         "Code search results": "代码搜索结果",
         "Enterprises": "企业版",
@@ -391,6 +393,8 @@ I18N["zh-CN"]["title"] = { // 标题翻译
         "New Fine-grained Personal Access Token": "新建精细化个人访问令牌",
         "Coding agent": "编程智能体",
         "Get Started With GitHub Discussions": "开始使用 GitHub 讨论",
+        "SSH and GPG keys": "SSH 和 GPG 密钥",
+        "MCP Registry": "MCP 互联",
     },
     "regexp": [ // 正则翻译
         [/Authorized OAuth Apps/, "授权的 OAuth 应用"],
@@ -661,6 +665,7 @@ I18N["zh-CN"]["public"] = { // 公共区域翻译
             "Codespaces": "代码空间",
             "Explore": "探索",
             "Marketplace": "市场",
+            "MCP Registry": "MCP 互联",
 
             "Download Copilot": "下载 Copilot", // 小屏模式
 
@@ -698,6 +703,9 @@ I18N["zh-CN"]["public"] = { // 公共区域翻译
 
         // 右上角 Copilot 下拉菜单
             "Chat with Copilot": "与 Copilot 聊天",
+            "Learn more about Copilot coding agent": "了解有关 Copilot 编程智能体的更多信息",
+            "Start a new task with Copilot": "使用 Copilot 启动新任务",
+            "Describe a coding task to work on": "描述要完成的编程任务",
             "Open Copilot…": "打开 Copilot…",
                 "New conversation in": "新聊天",
                 "New conversation": "新聊天",
@@ -4958,6 +4966,8 @@ I18N["zh-CN"]["settings/keys"] = { // 设置 - SSH 与 GPG 公钥
             "Authentication keys": "认证密钥",
             "There are no SSH keys associated with your account.": "没有与您的账户关联的 SSH 密钥。",
             "This is a list of SSH keys associated with your account. Remove any keys that you do not recognize.": "这是与您的账户相关的 SSH 密钥的列表。删除任何您无法识别的密钥。",
+            "Never used": "从未使用",
+                "— Read/write": "- 读写",
             "Last used within the last week": "上周内最后一次使用",
             "Check out our guide to": "请看我们的指南",
             "connecting to GitHub using SSH keys": "使用 SSH 密钥连接到 GitHub",
@@ -5004,6 +5014,7 @@ I18N["zh-CN"]["settings/keys"] = { // 设置 - SSH 与 GPG 公钥
 
     },
     "regexp": [ // 正则翻译
+        [/You have successfully added the key \'([^ ]+)\'./, "成功添加密钥 “$1”。"],
     ],
 };
 
@@ -5489,7 +5500,7 @@ I18N["zh-CN"]["settings/copilot"] = { // 设置 - GitHub Copilot
             "Copilot policies": "Copilot 规则",
                 "Copilot in GitHub.com": "在 GitHub.com 中使用 Copilot",
                     "You can use Copilot Chat in GitHub.com. Copilot code review and preview features are only available for paid licenses.": "您可以在 GitHub.com 中使用 Copilot Chat。Copilot 代码审查和预览功能仅适用于付费版。",
-                    "You can use Copilot Chat in GitHub.com. Preview features are only available for paid licenses.": "您可以在 GitHub.com 中使用 Copilot Chat。预览功能仅适用于付费版。", 
+                    "You can use Copilot Chat in GitHub.com. Preview features are only available for paid licenses.": "您可以在 GitHub.com 中使用 Copilot Chat。预览功能仅适用于付费版。",
                     "Learn more about Copilot in GitHub.com": "了解更多关于在 GitHub.com 中使用 Copilot 的信息",
                 "Editor preview features": "编辑器预览功能",
                     "You can use preview features in your editor.": "您可以在编辑器中使用预览功能。",
@@ -7371,6 +7382,7 @@ I18N["zh-CN"]["repository-public"] = { // 仓库 - 公共部分
             "people": "人", // 提交
             "committed": "提交于", // 提交浮窗
             "authored": "撰写于",
+            "authored and": "撰写和", // 1 编写，由 2 提交
 
             // 标签栏
             "Code": "代码",
@@ -7470,6 +7482,7 @@ I18N["zh-CN"]["repository-public"] = { // 仓库 - 公共部分
                 "View all tags": "查看全部标签",
 
                 "Find or create a branch...": "查找或创建分支...",
+                "Search or create a new tag": "搜索或创建新标签",
                 "View all": "查看全部",
                 "branches": "分支",
                 "Find a tag...": "查找标签...",
@@ -7648,7 +7661,7 @@ I18N["zh-CN"]["page-new-repo"] = {// 仓库 - 新建/导入/复刻仓库
         ...I18N["zh-CN"]["repository-public"]["static"],
 
         // 新建仓库 https://github.com/new
-            "Create a new repository": "创建新仓库",
+            "Create a new repository": "新建仓库",
                 "A repository contains all project files, including the revision history.": "仓库包含项目中的所有文件，包括修订历史记录。",
                 "Already have a project repository elsewhere?": "在其他地方已有仓库？",
                 "Import a repository": "导入仓库",
@@ -8196,7 +8209,7 @@ I18N["zh-CN"]["repository"] = { // 仓库页面 /<user-name>/<repo-name>/
 
 
             "Use this template": "使用此模板",
-                "Create a new repository": "创建新仓库",
+                "Create a new repository": "新建仓库",
                 "Open in a codespace": "在代码空间中打开",
 
             // 个人仓库 当前分支状态
@@ -9922,6 +9935,7 @@ I18N["zh-CN"]["repository/pull"] = { // 仓库 - 某个拉取请求页面
             "unlocked this conversation": "解锁此对话",
             "added this to the": "添加到",
             "milestone": "里程碑",
+            "review requested due to automatic review settings": "因设置自动审查",
 
             //
             "This branch has not been deployed": "该分支尚未部署",
@@ -11391,7 +11405,7 @@ I18N["zh-CN"]["repository/blob"] = { // 仓库 - 浏览代码
                         "No matches found": "未找到匹配项",
                         "Go to folder": "转到文件夹",
                         "See all results": "查看所有结果",
-            
+
             // Git LFS 托管的文件
                 "Stored with Git LFS": "Git LFS 托管",
 
@@ -12852,7 +12866,7 @@ I18N["zh-CN"]["repository/new"] = { // 仓库 - 新建/编辑/上传/删除文�
                     "Commit message": "提交信息",
                     "Extended description": "扩展描述",
                         "Add an optional extended description...": "添加描述... (可选)",
-                    
+
                     "Message and description suggested by Copilot.": "Copilot建议的消息和描述。",
                         "Send feedback": "提交反馈",
 
@@ -13665,6 +13679,7 @@ I18N["zh-CN"]["repository/releases"] = { // 仓库 - 发行版页面
                 "Search or create a new tag": "查找或新建标签",
             "Tag:": "标签：",
                 "Select tag": "选择标签",
+                "Create new tag": "新建标签",
             "Target:": "目标：",
                 "Pick a branch or recent commit": "选择分支或最近的提交",
                 "Filter branches…": "筛选分支…",
@@ -13839,6 +13854,8 @@ I18N["zh-CN"]["repository/releases"] = { // 仓库 - 发行版页面
         [/(\d+) (people|person) reacted/, "$1 人表达看法"],
         [/There are no releases containing \"([^ ]+)\"./, "没有发行版包含“$1”。"],
         [/Edit (.+)/, "编辑 $1"],
+        [/^([^ ]+) will be created on publish/, "$1 将在发布时创建"],
+        [/^([^ ]+) is used by another release/, "$1 已存在"], // 省略部分内容
         ...I18N["zh-CN"]["repository-public"]["regexp"],
     ],
 };
@@ -14698,6 +14715,7 @@ I18N["zh-CN"]["repository-insights-menu"] = { // 仓库 -> 洞察 - 公共部分
             "Contributors": "贡献者",
             "Community": "社区",
             "Community Standards": "社区准则",
+            "Community standards": "社区准则",
             "Traffic": "流量",
             "Commits": "提交",
             "Code frequency": "代码频率",
@@ -14708,6 +14726,8 @@ I18N["zh-CN"]["repository-insights-menu"] = { // 仓库 -> 洞察 - 公共部分
             "Forks": "复刻",
             "Actions Usage Metrics": "操作使用情况",
             "Actions Performance Metrics": "操作数据看板",
+            "Actions usage metrics": "操作使用情况",
+            "Actions performance metrics": "操作数据看板",
 
             "People": "成员", //组织仓库
 
@@ -14812,6 +14832,13 @@ I18N["zh-CN"]["repository/pulse"] = { // 仓库 -> 洞察 - 统计
                         "Category": "作者", // 此处原文错误
                     "Download CSV": "下载 CSV",
                     "Download PNG": "下载 PNG",
+
+                "Customization settings": "自定义设置",
+                    "Column & bar chart settings": "柱状图设置",
+                        "Increase Contrast": "增加对比度",
+                            "Adds gradients and outlines to increase contrast in charts.": "为图表添加渐变效果和轮廓，以增强对比度",
+                        "Show data labels": "显示数据标签",
+                            "Show labels for each data point in column and bar charts.": "在柱状图中显示每个数据点的标签",
 
             "Sometimes conversations happen on old items that aren't yet closed. Here is a list of all the Issues and Pull Requests with unresolved conversations.": "有时对尚未关闭的旧项目会有新的讨论。以下是所有有未解决讨论的议题和拉取请求列表。",
                 "commented on": "评论于",
@@ -15142,6 +15169,13 @@ I18N["zh-CN"]["repository/graphs/traffic"] = { // 仓库 -> 洞察 - 流量
                 "Download CSV": "下载 CSV",
                 "Download PNG": "下载 PNG",
 
+            "Customization settings": "自定义设置",
+                "Line chart settings": "折线图设置",
+                    "Differentiate by line style": "折线样式区分",
+                        "Use unique line styles (dashed, dotted, etc.) to differentiate lines in charts.": "使用独特的线条样式（如虚线、点线等）在图表中区分不同的线条。",
+                    "Show data labels": "显示数据标签",
+                        "Show labels for each data point in line chart.": "在折线图每个数据点显示标签。",
+
             // 表格
             "Category": "日期", // 实际上为日期
             "Total": "总计",
@@ -15354,6 +15388,7 @@ I18N["zh-CN"]["repository/network/dependencies"] = { // 仓库 -> 洞察 - 依�
                 "Filter by ecosystem": "按生态系统筛选",
 
             "ProTip!": "专业提示！",
+            "What’s not been updated": "未更新内容",
                 "Supported ecosystems will have transitivity labels on their packages.": "受支持的生态系统将在其包上有传递性标签。",
 
     },
@@ -22032,6 +22067,7 @@ I18N["zh-CN"]["orgs/people"] = { // 组织 - 成员标签卡
 
             "Sort": "排序",
             "Sort Order": "排序方式",
+            "Order": "方式",
             "Newest": "最新的",
             "Oldest": "最早的",
 
@@ -25754,6 +25790,9 @@ I18N["zh-CN"]["copilot"] = {
                 "Remove attachments": "移除附件",
 
             "Ask Copilot": "询问 Copilot",
+            "Add repositories, files and spaces": "添加仓库，文件和空间",
+                // 文件（夹）和符号
+                "Select folders and files in": "选择文件（夹）于",
             "Add attachment": "添加附件",
                 "Files and symbols…": "文件和符号…",
                     "First attach a repository": "请先附加仓库",
@@ -26327,4 +26366,25 @@ I18N["zh-CN"]["education"] = { // 教育页面，申请学生包会用到
         //[/Verified since (.+)/, "验证自 $1"],
         [/(\d+) views?/, "$1 次观看"],
     ],
+};
+
+I18N["zh-CN"]["mcp"] = {
+    "static": {
+        "Connect models to the real world": "连接模型至真实世界",
+            "Servers and tools from the community that connect models to files, APIs, databases, and more.": "来自社区的服务器和工具，可以将模型连接到文件、API、数据库等。",
+
+        "Search MCPs": "搜索 MCP",
+
+        "All MCP servers": "所有 MCP 服务器",
+            "Install": "安装",
+                "Install in VS Code": "安装到 VS Code",
+                "Install in VS Code Insiders": "安装到 VS Code 测试版",
+
+            "By": "作者",
+
+        // 具体页面
+            "Install MCP server": "安装 MCP 服务器",
+            "Contact support": "获取支持",
+    },
+    "regexp": [],
 };
